@@ -18,6 +18,7 @@ import java.util.List;
 @Setter
 public class Author {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer authorId;
     @Column(nullable = false)
     private String authorName;

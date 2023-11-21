@@ -1,6 +1,8 @@
 package com.acciojob.library.management.system.services;
 
 import com.acciojob.library.management.system.entitys.Author;
+import com.acciojob.library.management.system.entitys.Book;
+import com.acciojob.library.management.system.exceptions.AuthorNotFoundException;
 import com.acciojob.library.management.system.repositorys.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +36,18 @@ public class AuthorService {
         }
         Author result = author.get();
         return result;
+    }
+    public List<String> authorBookList(Integer authorId) throws AuthorNotFoundException {
+        List<String> bookNameList = new ArrayList<>();
+        Optional<Author> authorOptional = authorRepository.findById(authorId);
+        if (!authorOptional.isPresent()) {
+            throw new AuthorNotFoundException("author id is invalid");
+        }
+        Author author = authorOptional.get();
+        List<Book> bookList = author.getBookList();
+        for (Book book: bookList) {
+            bookNameList.add(book.getBookName());
+        }
+        return bookNameList;
     }
 }
