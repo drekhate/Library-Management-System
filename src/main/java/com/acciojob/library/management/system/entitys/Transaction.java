@@ -27,7 +27,7 @@ public class Transaction {
     private Date returnDate;
     private Integer fine;
     @CreationTimestamp
-    private Date createOn;
+    private Date createdOn;
     @UpdateTimestamp
     private Date lastModifiedOn;
     @ManyToOne

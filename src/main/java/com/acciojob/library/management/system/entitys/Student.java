@@ -1,6 +1,8 @@
 package com.acciojob.library.management.system.entitys;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +26,7 @@ public class Student {
     private String emailId;
     private String bloodGroup;
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonIgnore
     private LibraryCard libraryCard;
 
 }

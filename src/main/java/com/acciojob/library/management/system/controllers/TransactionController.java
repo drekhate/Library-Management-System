@@ -22,4 +22,14 @@ public class TransactionController {
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+    @PostMapping("/returnBook")
+    public ResponseEntity returnBook(@RequestParam("bookId")Integer bookId, @RequestParam("cardNo")Integer cardNo) {
+        String result;
+        try {
+            result = transactionService.returnBook(bookId, cardNo);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }
